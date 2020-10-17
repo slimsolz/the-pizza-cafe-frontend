@@ -1,0 +1,88 @@
+.Header {
+  background-color: #89c35c;
+  height: 90px;
+  font-size: 2rem;
+  padding-left: 20rem;
+  padding-right: 20rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header__menuIcon {
+  display: none;
+}
+
+.Header__Logo {
+}
+
+.Header__nav {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+
+  & > * {
+    padding: 0 2rem;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    // border: 1px solid;
+    text-transform: uppercase;
+    margin-right: 15px;
+  }
+
+  & > *:hover {
+    background-color: #396914;
+  }
+}
+
+.Header__login {
+  margin-right: 10px;
+}
+
+.Header__cart {
+  position: relative;
+}
+
+.Header__navItemBadge {
+  background-color: red;
+  font-size: 0.8rem;
+  height: 1.85rem;
+  width: 1.85rem;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  top: 3.5rem;
+  right: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: "870px") {
+  .Header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (max-width: "768px") {
+  .Header__menuIcon {
+    display: block;
+    align-self: stretch;
+    flex: 0 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Header__nav {
+  }
+
+  .Header__menu,
+  .Header__loginDiv {
+    display: none;
+  }
+}

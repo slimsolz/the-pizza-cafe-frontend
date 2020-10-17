@@ -1,0 +1,59 @@
+.SideDrawer {
+  background-color: var(--white);
+  width: 280px;
+  max-width: 70%;
+  height: 100%;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  position: fixed;
+  padding: 20px 0;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
+
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__search {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: -16%;
+  }
+
+  &__nav {
+  }
+
+  &__navTitle {
+    margin-top: 20px;
+    padding-left: 22px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    font-family: SFProDisplay;
+    font-size: 13px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.93px;
+    color: var(--blue-grey);
+  }
+}
+
+.SideDrawerOpen {
+  transform: translateX(0);
+}
+
+.SideDrawerHide {
+  transform: translateX(-100%);
+}
+
+@media screen and (min-width: "769px") {
+  .SideDrawer {
+    display: none;
+  }
+}
