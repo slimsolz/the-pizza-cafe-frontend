@@ -1,0 +1,106 @@
+.Header {
+  background-color: #89c35c;
+  height: 10vh;
+  font-size: 2rem;
+  padding-left: 10%;
+  padding-right: 10%;
+  position: fixed;
+  top: 0;
+  width: 80%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header__menuIcon {
+  display: none;
+}
+
+.Header__Logo,
+.Header__nav {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.Header__nav {
+  font-size: 2.5rem;
+
+  & > * {
+    padding: 0 2rem;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    margin-right: 15px;
+  }
+
+  & > *:hover {
+    background-color: #396914;
+    color: #fff;
+  }
+}
+
+.Header__login {
+  margin-right: 10px;
+}
+
+.Header__cart {
+  position: relative;
+}
+
+.Header__navItemBadge {
+  background-color: red;
+  font-size: 01rem;
+  height: 2.4rem;
+  width: 2.4rem;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  top: 3.5rem;
+  right: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: "870px") {
+  .Header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 98%;
+  }
+}
+
+@media screen and (max-width: "444px") {
+  .Header__Logo {
+    display: none;
+  }
+
+  .Header__nav {
+    & > * {
+      margin-right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: "768px") {
+  .Header__menuIcon {
+    display: block;
+    align-self: stretch;
+    flex: 0 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Header__nav {
+  }
+
+  .Header__menu,
+  .Header__loginDiv {
+    display: none;
+  }
+}

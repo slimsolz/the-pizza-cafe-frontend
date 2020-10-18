@@ -1,0 +1,23 @@
+.Footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  height: 10vh;
+  background-color: #eee;
+
+  &__social {
+    cursor: pointer;
+    font-size: 2.5rem;
+    color: #89c35c;
+
+    & :not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__copyright {
+    text-transform: capitalize;
+  }
+}
