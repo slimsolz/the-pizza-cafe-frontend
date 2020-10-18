@@ -1,0 +1,48 @@
+.FormContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: normal;
+  flex: 1 1 auto;
+}
+
+.FormLabel {
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-transform: capitalize;
+  margin: 5px 0;
+}
+
+.FormInput {
+  padding: 3px 9px;
+  height: 36px;
+  border-radius: 3px;
+  border: solid 1.2px #eee;
+  background-color: #fff;
+  color: #212b36;
+
+  &:focus {
+    border: 1px solid #89c35c;
+    outline: none;
+  }
+}
+
+.isError {
+  border: solid 1px red;
+}
+
+.help {
+  margin-top: 5px;
+  color: red;
+  line-height: 1.43;
+  letter-spacing: normal;
+}

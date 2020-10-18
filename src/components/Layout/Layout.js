@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import SideDrawer from "../SideDrawer/SideDrawer";
 import Footer from "../Footer/Footer";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   const [show, setShow] = useState(false);
   const toggle = () => setShow(!show);
   axios
@@ -16,7 +16,7 @@ const Layout = () => {
     <div className={styles.Layout}>
       <Header onOpen={toggle} />
       <SideDrawer show={show} onClose={toggle} />
-      <h4 style={{ marginTop: "10vh" }}>main</h4>
+      <main className={styles.Layout__main}>{children}</main>
       <Footer />
     </div>
   );
