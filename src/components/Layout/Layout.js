@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import styles from "./Layout.module.css";
+import styles from "./Layout.module.scss";
 import axios from "axios";
 import Header from "../Header/Header";
 import SideDrawer from "../SideDrawer/SideDrawer";
+import Footer from "../Footer/Footer";
 
 const Layout = () => {
   const [show, setShow] = useState(false);
@@ -15,8 +16,8 @@ const Layout = () => {
     <div className={styles.Layout}>
       <Header onOpen={toggle} />
       <SideDrawer show={show} onClose={toggle} />
-      <h4>main</h4>
-      <h4>footer</h4>
+      <h4 style={{ marginTop: "10vh" }}>main</h4>
+      <Footer />
     </div>
   );
 };

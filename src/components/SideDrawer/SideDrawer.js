@@ -1,13 +1,10 @@
 import React from "react";
 import styles from "./SideDrawer.module.scss";
 import BackDrop from "../BackDrop/BackDrop";
-// import SearchBar from "../../SearchBar/SearchBar";
-import { GrCart } from "react-icons/gr";
-import { MdHome } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";
+import SearchBar from "../SearchBar/SearchBar";
 
 const SideDrawer = ({ show, onClose }) => {
-  const path = window.location.pathname;
+  // const path = window.location.pathname;
 
   return (
     <>
@@ -17,9 +14,30 @@ const SideDrawer = ({ show, onClose }) => {
           show ? styles.SideDrawerOpen : styles.SideDrawerHide
         }`}
       >
-        {/* <div className={styles.SideDrawer__search}> */}
-        {/* <SearchBar /> */}
-        {/* </div> */}
+        <h1 className={styles.SideDrawer__logo}>
+          {" "}
+          The Pizza Cafe{" "}
+          <span role="img" aria-label="pizza">
+            {" "}
+            🍕
+          </span>
+        </h1>
+        <div className={styles.SideDrawer__search}>
+          <SearchBar />
+        </div>
+        <nav className={styles.SideDrawer__nav}>
+          <div className={styles.SideDrawer__navItem}>
+            {/* <Link> */}
+            menu
+            {/* </Link> */}
+          </div>
+
+          <div className={styles.SideDrawer__navItem}>
+            {/* <Link> */}
+            logout
+            {/* </Link> */}
+          </div>
+        </nav>
       </div>
     </>
   );

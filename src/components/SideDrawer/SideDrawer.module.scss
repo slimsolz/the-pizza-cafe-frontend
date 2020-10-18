@@ -1,5 +1,5 @@
 .SideDrawer {
-  background-color: var(--white);
+  background-color: #fff;
   width: 280px;
   max-width: 70%;
   height: 100%;
@@ -7,16 +7,15 @@
   top: 0;
   left: 0;
   position: fixed;
-  padding: 20px 0;
+  padding: 2 0;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
 
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
+  &__logo {
+    height: 9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__search {
@@ -26,6 +25,31 @@
   }
 
   &__nav {
+  }
+
+  &__navItem {
+    height: 45px;
+    padding-left: 22px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.1px;
+    font-family: SFProDisplay;
+    text-decoration: none;
+    list-style: none;
+    &:hover {
+      transition: all 0.5s ease-in;
+      background-color: #eee;
+      color: var(--tef-red);
+      text-decoration: none;
+      fill: var(--tef-red);
+    }
   }
 
   &__navTitle {

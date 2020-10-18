@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Header.module.scss";
-import { GrCart } from "react-icons/gr";
-import { FaBars, FaDollarSign, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaDollarSign, FaUserCircle, FaShoppingCart } from "react-icons/fa";
 
 const Header = ({ onOpen }) => {
   return (
@@ -15,6 +14,7 @@ const Header = ({ onOpen }) => {
           🍕
         </span>
       </h1>
+
       <nav className={styles.Header__nav}>
         <div className={styles.Header__menu}>menu</div>
         <div className={styles.Header__loginDiv}>
@@ -22,7 +22,7 @@ const Header = ({ onOpen }) => {
           <FaUserCircle />
         </div>
         <div className={`${styles.Header__navItem} ${styles.Header__cart}`}>
-          <GrCart />
+          <FaShoppingCart />
           <span className={styles.Header__navItemBadge}>4</span>
         </div>
         <div className={styles.Header__navItem}>
