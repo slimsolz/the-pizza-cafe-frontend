@@ -70,7 +70,11 @@ const MenuCard = ({ name, defaultPrice, pizzaImg, pizzId }) => {
         <h1 className={styles.MenuCardTitle}>{name}</h1>
         <div className={styles.MenuCardInputContainer}>
           <label className={styles.label}>size</label>
-          <select defaultValue={sizes[sizeValue]} onChange={handleSizeChange}>
+          <select
+            defaultValue={sizes[sizeValue]}
+            onChange={handleSizeChange}
+            style={{ border: "0.2px solid #89c35c" }}
+          >
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>

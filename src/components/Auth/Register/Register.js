@@ -50,7 +50,7 @@ const Register = () => {
   );
 
   return (
-    <Layout>
+    <Layout title="register">
       <div className={styles.RegisterContainer}>
         <form onSubmit={handleSubmit}>
           <FormInputContainer

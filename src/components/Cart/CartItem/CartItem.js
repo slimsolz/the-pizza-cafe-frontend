@@ -2,7 +2,10 @@ import React, { useContext, useState } from "react";
 import styles from "./CartItem.module.scss";
 import { Link } from "react-router-dom";
 import { Context } from "../../../store";
-import { updateItemInCart } from "../../../requests/CartRequest";
+import {
+  removeItemFromCart,
+  updateItemInCart,
+} from "../../../requests/CartRequest";
 
 const CartItem = ({
   name,
@@ -69,6 +72,10 @@ const CartItem = ({
     });
   };
 
+  const handleRemoveItem = () => {
+    removeItemFromCart(dispatch, cartId, pizzaId);
+  };
+
   return (
     <div className={styles.CartItemContainer}>
       <div className={styles.pizImgContainer}>
@@ -100,7 +107,9 @@ const CartItem = ({
       </div>
       <div className={styles.actionsContainer}>
         <p className={styles.amount}>{parseFloat(total).toFixed(2)}</p>
-        <button className={styles.remove}>remove</button>
+        <button className={styles.remove} onClick={handleRemoveItem}>
+          remove
+        </button>
         <Link to={`/edit/${itemId}`} className={styles.edit}>
           edit
         </Link>

@@ -94,18 +94,16 @@ export const updateItemInCart = (dispatch, id, payload) => {
     });
 };
 
-export const removeItemFromCart = (dispatch, payload) => {
+export const removeItemFromCart = (dispatch, cartId, pizzaId) => {
   dispatch(asyncActions(REMOVE_ITEM).loading(true));
   return axios({
     method: "delete",
-    url: `cart/${payload}`,
+    url: `cart/${cartId}/${pizzaId}`,
   })
     .then((response) => {
       dispatch(asyncActions(REMOVE_ITEM).loading(false));
       if (response.status === 204) {
-        console.log(response.data);
-        dispatch(asyncActions(REMOVE_ITEM).success({}));
-        dispatch(asyncActions(REMOVE_ITEM).loading(false));
+        viewCart(dispatch, cartId);
         return null;
       }
     })

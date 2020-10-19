@@ -9,3 +9,5 @@ export const EMPTY_CART = "EMPTY_CART";
 export const GET_TOTAL = "GET_TOTAL";
 
 export const GET_MENU = "GET_MENU";
+
+export const CHECKOUT = "CHECKOUT";

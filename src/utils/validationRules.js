@@ -71,3 +71,43 @@ export function validateLogin(values) {
 
   return errors;
 }
+
+export function validateCheckout(values) {
+  let errors = {};
+
+  if (!values.email || values.email.trim() === "") {
+    errors.email = "Email is required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+
+  if (!values.firstName || values.firstName.trim() === "") {
+    errors.firstName = "First name is required";
+  } else if (!/[a-zA-Z]/i.test(values.firstName)) {
+    errors.firstName = "Must contain only letters";
+  }
+
+  if (!values.lastName || values.lastName.trim() === "") {
+    errors.lastName = "Last name is required";
+  } else if (!/[a-zA-Z]/i.test(values.lastName)) {
+    errors.lastName = "Must contain only letters";
+  }
+
+  if (!values.phone || values.phone.trim() === "") {
+    errors.phone = "Phone number is required";
+  } else if (!/[0-9]/i.test(values.phone)) {
+    errors.phone = "Must contain be numbers";
+  }
+
+  if (!values.address || values.address.trim() === "") {
+    errors.address = "Address is required";
+  }
+
+  if (!values.zipCode || values.zipCode.trim() === "") {
+    errors.zipCode = "zip code number is required";
+  } else if (!/[0-9]/i.test(values.zipCode)) {
+    errors.zipCode = "Must contain be numbers";
+  }
+
+  return errors;
+}

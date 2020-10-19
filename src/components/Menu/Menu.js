@@ -32,25 +32,27 @@ const Menu = () => {
         })
         .catch((err) => console.log(err.response));
     }
-  });
+  }, []);
 
-  const menuList = menu.map((mu) => {
-    const {
-      id,
-      name,
-      photo: { image_url },
-      price,
-    } = mu;
-    return (
-      <MenuCard
-        key={id}
-        pizzId={id}
-        name={name}
-        defaultPrice={price}
-        pizzaImg={image_url}
-      />
-    );
-  });
+  const menuList =
+    menu &&
+    menu.map((mu) => {
+      const {
+        id,
+        name,
+        photo: { image_url },
+        price,
+      } = mu;
+      return (
+        <MenuCard
+          key={id}
+          pizzId={id}
+          name={name}
+          defaultPrice={price}
+          pizzaImg={image_url}
+        />
+      );
+    });
 
   return (
     <Layout title="menu">
