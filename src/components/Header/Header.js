@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from "../../store";
 import styles from "./Header.module.scss";
 import {
   FaBars,
@@ -8,11 +9,29 @@ import {
 } from "react-icons/fa";
 import { isLoggedIn } from "../../utils/isLoggedIn";
 import { Link } from "react-router-dom";
+import { viewCart } from "../../requests/CartRequest";
 
 const Header = ({ onOpen }) => {
+  const { state, dispatch } = useContext(Context);
   const user =
     JSON.parse(localStorage.getItem("user")) &&
     JSON.parse(localStorage.getItem("user")).first_name;
+
+  const cartDetails =
+    JSON.parse(localStorage.getItem("cart_items")) &&
+    JSON.parse(localStorage.getItem("cart_items"));
+
+  const [cart, setCart] = useState(cartDetails);
+
+  useEffect(() => {
+    console.log("no reload");
+    if (localStorage.getItem("cartId")) {
+      const cartId = localStorage.getItem("cartId");
+      viewCart(dispatch, cartId);
+    }
+  }, [state.Cart.cart]);
+
+  console.log(state.Cart.cart);
 
   return (
     <header className={styles.Header}>
@@ -27,14 +46,20 @@ const Header = ({ onOpen }) => {
       </h1>
 
       <nav className={styles.Header__nav}>
-        <div className={styles.Header__menu}>menu</div>
+        <div className={styles.Header__menu}>
+          <Link to="/menu" className={styles.Header__LoginLink}>
+            menu
+          </Link>
+        </div>
         <div className={styles.Header__loginDiv}>
           {isLoggedIn() ? (
             <span className={styles.Header__userNameContainer}>
               <span className={styles.Header__userName}>{`Hi ${user}`}</span>
               <span className={styles.Header__userName}>
                 Not you?{" "}
-                <Link className={styles.Header__signOutLink}>SIGN OUT</Link>
+                <Link to="/signout" className={styles.Header__signOutLink}>
+                  SIGN OUT
+                </Link>
               </span>
             </span>
           ) : (
@@ -48,7 +73,7 @@ const Header = ({ onOpen }) => {
         </div>
         <div className={`${styles.Header__navItem} ${styles.Header__cart}`}>
           <FaShoppingCart />
-          <span className={styles.Header__navItemBadge}>4</span>
+          <span className={styles.Header__navItemBadge}>{cart.length}</span>
         </div>
         <div className={styles.Header__navItem}>
           <FaDollarSign />

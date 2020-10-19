@@ -1,0 +1,125 @@
+.MenuCard {
+  width: 250px;
+  border: 1px solid #89c35c;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+
+.MenuCardImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.MenuCardDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.MenuCardTitle {
+  text-transform: uppercase;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.MenuCardInputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > * {
+    margin-top: 3px;
+  }
+
+  & .label {
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+}
+
+.quantityContainer {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  & > input[type="text"] {
+    width: 30%;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & > button {
+    width: 30px;
+    border-radius: 50%;
+    border: 0.2px solid #89c35c;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+}
+
+.amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  border: 0;
+  color: #000;
+  text-align: center;
+}
+
+.AddToCartBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  text-transform: capitalize;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  transition: all 0.2s;
+  border: 0;
+  background-color: #89c35c;
+  color: #fff;
+
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    transform: translateY(2px);
+  }
+}
+
+.isDisabled {
+  cursor: not-allowed;
+}
