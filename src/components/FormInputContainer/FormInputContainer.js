@@ -3,6 +3,7 @@ import styles from "./FormInputContainer.module.scss";
 
 export const FormInputContainer = ({
   name,
+  inputName,
   inputType,
   inputValue,
   errorName,
@@ -13,7 +14,7 @@ export const FormInputContainer = ({
   return (
     <div className={styles.FormContainer}>
       <label htmlFor={name} className={styles.FormLabel}>
-        {name}
+        {/* {inputName} */}
       </label>
       <input
         className={`${styles.FormInput} ${errorName && `${styles.isError}`}`}

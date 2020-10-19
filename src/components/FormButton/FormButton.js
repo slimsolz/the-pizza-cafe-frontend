@@ -12,6 +12,7 @@ const FormButton = ({
 }) => {
   return (
     <button
+      type="submit"
       style={{ backgroundColor: `${buttonColor}`, color: `${textColor}` }}
       disabled={isLoading}
       className={`${styles.Button} ${isLoading && `${styles.isDisabled}`}`}

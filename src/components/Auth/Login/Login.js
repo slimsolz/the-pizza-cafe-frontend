@@ -1,23 +1,48 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "../../../utils/axios";
 import useForm from "../../../utils/useForm";
-import validate from "../../../utils/validationRules";
+import { validateLogin } from "../../../utils/validationRules";
 import FormButton from "../../FormButton/FormButton";
 import { FormInputContainer } from "../../FormInputContainer/FormInputContainer";
 import Layout from "../../Layout/Layout";
 import styles from "./Login.module.scss";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import setAuthToken from "../../../utils/AuthTokenUtil";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const onHandleSubmit = (e) => {
+  const onHandleLogin = (e) => {
     setIsLoading(true);
-    console.log(values);
+    const payload = {
+      email: values.email,
+      password: values.password,
+    };
+    axios({
+      method: "post",
+      url: "auth/login",
+      data: payload,
+    })
+      .then((response) => {
+        setIsLoading(false);
+        const { data } = response;
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify({ ...data.data }));
+        setAuthToken(data.token);
+        toast(`${data.message}`);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        const { data } = err.response;
+        console.log(data);
+      });
   };
+
   const { values, errors, handleChange, handleSubmit } = useForm(
-    onHandleSubmit,
-    validate
+    onHandleLogin,
+    validateLogin
   );
 
   return (
@@ -26,6 +51,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <FormInputContainer
             name="email"
+            inputName="email"
             inputType="text"
             inputValue={values.email}
             errorName={errors.email}
@@ -36,6 +62,7 @@ const Login = () => {
 
           <FormInputContainer
             name="password"
+            inputName="password"
             inputType="password"
             inputValue={values.password}
             errorName={errors.password}
