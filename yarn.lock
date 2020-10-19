@@ -9037,6 +9037,13 @@ react-dom@^16.14.0:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
+react-dropdown@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/react-dropdown/-/react-dropdown-1.9.0.tgz#405d0c580ec4ba276091e059ee9c278f75caeb96"
+  integrity sha512-BDApCUhs0qHqnFW3b54SuqI200FOOsmiy0dejdmtdTn/MMY11jcou3CLX1oT2Qa1PdN7viTyAGT8YCpK5qb9xg==
+  dependencies:
+    classnames "^2.2.3"
+
 react-error-overlay@^6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
