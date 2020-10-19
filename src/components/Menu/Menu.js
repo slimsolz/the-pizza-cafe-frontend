@@ -53,7 +53,7 @@ const Menu = () => {
   });
 
   return (
-    <Layout>
+    <Layout title="menu">
       <div className={styles.MenuContainer}>{menuList}</div>
     </Layout>
   );

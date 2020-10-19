@@ -24,14 +24,11 @@ const Header = ({ onOpen }) => {
   const [cart, setCart] = useState(cartDetails);
 
   useEffect(() => {
-    console.log("no reload");
     if (localStorage.getItem("cartId")) {
       const cartId = localStorage.getItem("cartId");
       viewCart(dispatch, cartId);
     }
   }, [state.Cart.cart]);
-
-  console.log(state.Cart.cart);
 
   return (
     <header className={styles.Header}>
@@ -72,7 +69,9 @@ const Header = ({ onOpen }) => {
           <FaUserCircle />
         </div>
         <div className={`${styles.Header__navItem} ${styles.Header__cart}`}>
-          <FaShoppingCart />
+          <Link to="/cart" className={styles.Header__cartLink}>
+            <FaShoppingCart />
+          </Link>
           <span className={styles.Header__navItemBadge}>{cart.length}</span>
         </div>
         <div className={styles.Header__navItem}>

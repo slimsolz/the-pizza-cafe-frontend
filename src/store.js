@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 import combineReducers from "react-combine-reducers";
 import CartReducer from "./reducers/CartReducer";
 
@@ -7,6 +7,7 @@ export const initialState = {
   cart: {
     carts: [],
     cart: {},
+    total: 0,
     loading: false,
     success: false,
     error: false,

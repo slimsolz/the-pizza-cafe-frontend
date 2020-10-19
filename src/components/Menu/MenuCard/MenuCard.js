@@ -5,7 +5,7 @@ import { Context } from "../../../store";
 import { addToCart } from "../../../requests/CartRequest";
 
 const MenuCard = ({ name, defaultPrice, pizzaImg, pizzId }) => {
-  const { state, dispatch } = useContext(Context);
+  const { dispatch } = useContext(Context);
   const cartId =
     localStorage.getItem("cartId") && localStorage.getItem("cartId");
   const price = defaultPrice;
