@@ -13,6 +13,7 @@ import setAuthToken from "../../../utils/AuthTokenUtil";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onHandleLogin = (e) => {
     setIsLoading(true);
@@ -32,11 +33,17 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify({ ...data.data }));
         setAuthToken(data.token);
         toast(`${data.message}`);
+        setTimeout(() => {
+          window.location.replace("/menu");
+        }, 5000);
       })
       .catch((err) => {
         setIsLoading(false);
         const { data } = err.response;
-        console.log(data);
+        setErrorMessage(data.message);
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 2000);
       });
   };
 
@@ -70,6 +77,10 @@ const Login = () => {
             change={handleChange}
             isRequired
           />
+
+          {errorMessage && (
+            <h1 className={styles.errorMessage}>{errorMessage}</h1>
+          )}
 
           <FormButton
             name="login"

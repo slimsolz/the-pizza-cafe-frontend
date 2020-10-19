@@ -13,6 +13,7 @@
     "react": "^16.14.0",
     "react-combine-reducers": "^1.0.4",
     "react-dom": "^16.14.0",
+    "react-dropdown": "^1.9.0",
     "react-icons": "^3.11.0",
     "react-loader-spinner": "^3.1.14",
     "react-router-dom": "^5.2.0",

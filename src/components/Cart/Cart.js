@@ -17,6 +17,10 @@ const EXCHANGE_RATE = 0.85;
 
 const Cart = () => {
   const { state, dispatch } = useContext(Context);
+  const loggedInUser =
+    JSON.parse(localStorage.getItem("user")) &&
+    JSON.parse(localStorage.getItem("user"));
+
   const cart_items =
     JSON.parse(localStorage.getItem("cart_items")) &&
     JSON.parse(localStorage.getItem("cart_items"));
@@ -26,17 +30,16 @@ const Cart = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const cart_id = cart_items && cart_items[0] && cart_items[0].cart_id;
-  const exRate =
-    localStorage.getItem("currency") &&
-    localStorage.getItem("currency") === "dollar"
-      ? 1
-      : EXCHANGE_RATE;
+  const currency =
+    localStorage.getItem("currency") && localStorage.getItem("currency");
+
+  const exRate = currency === "dollar" ? 1 : EXCHANGE_RATE;
 
   const onCheckout = async () => {
     setIsLoading(true);
     const payload = {
       cart_id: cart_items[0].cart_id,
-      currency: "dollar",
+      currency: currency,
       delivery_fee: DELIVERY_FEE,
       delivery_address: values.address,
       sub_total: totalAmountInCart,
@@ -57,6 +60,7 @@ const Cart = () => {
         confirmButtonColor: "#89c35c",
       }).then((result) => {
         localStorage.clear();
+        window.location.replace("/menu");
       });
     } else {
       setIsLoading(false);
@@ -105,12 +109,17 @@ const Cart = () => {
         {cards}
         <div className={styles.CartTotalContainer}>
           <h1 className={styles.total}>
-            Sub Total {totalAmountInCart && totalAmountInCart.toFixed(2)}
+            Sub Total:{" "}
+            {(totalAmountInCart && totalAmountInCart.toFixed(2)) || 0}
           </h1>
-          <h1 className={styles.total}>Delivery Fee: {DELIVERY_FEE}</h1>
+          <h1 className={styles.total}>
+            Delivery Fee: {totalAmountInCart ? DELIVERY_FEE : 0}
+          </h1>
           <h1 className={styles.total}>
             Total({exRate === 1 ? <BiDollar /> : <BiEuro />}):{" "}
-            {((totalAmountInCart + DELIVERY_FEE) * exRate).toFixed(2)}
+            {!isNaN(((totalAmountInCart + DELIVERY_FEE) * exRate).toFixed(2))
+              ? ((totalAmountInCart + DELIVERY_FEE) * exRate).toFixed(2)
+              : 0}
           </h1>
 
           <button
@@ -133,7 +142,9 @@ const Cart = () => {
               name="firstName"
               inputName="first name"
               inputType="text"
-              inputValue={values.firstName}
+              inputValue={
+                values.firstName || (loggedInUser && loggedInUser.first_name)
+              }
               errorName={errors.firstName}
               placeholderText="First name"
               change={handleChange}
@@ -144,7 +155,9 @@ const Cart = () => {
               name="lastName"
               inputName="last name"
               inputType="text"
-              inputValue={values.lastName}
+              inputValue={
+                values.lastName || (loggedInUser && loggedInUser.last_name)
+              }
               errorName={errors.lastName}
               placeholderText="Last name"
               change={handleChange}
@@ -155,7 +168,7 @@ const Cart = () => {
               name="email"
               inputName="email"
               inputType="email"
-              inputValue={values.email}
+              inputValue={values.email || (loggedInUser && loggedInUser.email)}
               errorName={errors.email}
               placeholderText="Email address"
               change={handleChange}
@@ -166,7 +179,9 @@ const Cart = () => {
               name="phone"
               inputName="Phone number"
               inputType="text"
-              inputValue={values.phone}
+              inputValue={
+                values.phone || (loggedInUser && loggedInUser.phone_number)
+              }
               errorName={errors.phone}
               placeholderText="Phone number"
               change={handleChange}
@@ -188,7 +203,9 @@ const Cart = () => {
               name="address"
               inputName="Address"
               inputType="text"
-              inputValue={values.address}
+              inputValue={
+                values.address || (loggedInUser && loggedInUser.address)
+              }
               errorName={errors.address}
               placeholderText="Address"
               change={handleChange}

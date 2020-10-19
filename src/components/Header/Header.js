@@ -1,15 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Context } from "../../store";
 import styles from "./Header.module.scss";
-import {
-  FaBars,
-  FaDollarSign,
-  FaUserCircle,
-  FaShoppingCart,
-} from "react-icons/fa";
+import { FaBars, FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { isLoggedIn } from "../../utils/isLoggedIn";
 import { Link } from "react-router-dom";
 import { viewCart } from "../../requests/CartRequest";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
 const Header = ({ onOpen }) => {
   const { state, dispatch } = useContext(Context);
@@ -20,6 +17,21 @@ const Header = ({ onOpen }) => {
   const cartDetails =
     JSON.parse(localStorage.getItem("cart_items")) &&
     JSON.parse(localStorage.getItem("cart_items"));
+
+  const currency =
+    localStorage.getItem("currency") && localStorage.getItem("currency");
+
+  const options = ["dollar", "euro"];
+  const defaultOption = currency || options[0];
+  const _select = (e) => {
+    localStorage.setItem("currency", e.value);
+    window.location.reload();
+  };
+
+  const _signOut = () => {
+    localStorage.clear("user");
+    window.location.replace("/menu");
+  };
 
   useEffect(() => {
     if (localStorage.getItem("cartId")) {
@@ -55,7 +67,11 @@ const Header = ({ onOpen }) => {
               <span className={styles.Header__userName}>{`Hi ${user}`}</span>
               <span className={styles.Header__userName}>
                 Not you?{" "}
-                <Link to="/signout" className={styles.Header__signOutLink}>
+                <Link
+                  to="#"
+                  onClick={_signOut}
+                  className={styles.Header__signOutLink}
+                >
                   SIGN OUT
                 </Link>
               </span>
@@ -74,11 +90,16 @@ const Header = ({ onOpen }) => {
             <FaShoppingCart />
           </Link>
           <span className={styles.Header__navItemBadge}>
-            {cartDetails && cartDetails.length}
+            {(cartDetails && cartDetails.length) || 0}
           </span>
         </div>
         <div className={styles.Header__navItem}>
-          <FaDollarSign />
+          <Dropdown
+            options={options}
+            value={defaultOption}
+            placeholder="Select an option"
+            onChange={_select}
+          />
         </div>
       </nav>
     </header>
