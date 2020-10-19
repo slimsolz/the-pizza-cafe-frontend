@@ -14,4 +14,13 @@
     margin-right: auto;
     padding-top: 50px;
   }
+
+  &__title {
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
 }

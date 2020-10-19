@@ -21,17 +21,15 @@ const Header = ({ onOpen }) => {
     JSON.parse(localStorage.getItem("cart_items")) &&
     JSON.parse(localStorage.getItem("cart_items"));
 
-  const [cart, setCart] = useState(cartDetails);
-
   useEffect(() => {
-    console.log("no reload");
     if (localStorage.getItem("cartId")) {
       const cartId = localStorage.getItem("cartId");
       viewCart(dispatch, cartId);
     }
+    if (!localStorage.getItem("currency")) {
+      localStorage.setItem("currency", "dollar");
+    }
   }, [state.Cart.cart]);
-
-  console.log(state.Cart.cart);
 
   return (
     <header className={styles.Header}>
@@ -72,8 +70,12 @@ const Header = ({ onOpen }) => {
           <FaUserCircle />
         </div>
         <div className={`${styles.Header__navItem} ${styles.Header__cart}`}>
-          <FaShoppingCart />
-          <span className={styles.Header__navItemBadge}>{cart.length}</span>
+          <Link to="/cart" className={styles.Header__cartLink}>
+            <FaShoppingCart />
+          </Link>
+          <span className={styles.Header__navItemBadge}>
+            {cartDetails && cartDetails.length}
+          </span>
         </div>
         <div className={styles.Header__navItem}>
           <FaDollarSign />

@@ -46,7 +46,7 @@ const Login = () => {
   );
 
   return (
-    <Layout>
+    <Layout title="login">
       <div className={styles.LoginContainer}>
         <form onSubmit={handleSubmit}>
           <FormInputContainer

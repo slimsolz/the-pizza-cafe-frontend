@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import SideDrawer from "../SideDrawer/SideDrawer";
 import Footer from "../Footer/Footer";
 
-const Layout = ({ children }) => {
+const Layout = ({ title, children }) => {
   const [show, setShow] = useState(false);
   const toggle = () => setShow(!show);
 
@@ -12,7 +12,12 @@ const Layout = ({ children }) => {
     <div className={styles.Layout}>
       <Header onOpen={toggle} />
       <SideDrawer show={show} onClose={toggle} />
-      <main className={styles.Layout__main}>{children}</main>
+      <main className={styles.Layout__main}>
+        <div className={styles.Layout__title}>
+          {title}
+        </div>
+        {children}
+      </main>
       <Footer />
     </div>
   );
