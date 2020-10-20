@@ -88,10 +88,10 @@ const Header = ({ onOpen }) => {
         <div className={`${styles.Header__navItem} ${styles.Header__cart}`}>
           <Link to="/cart" className={styles.Header__cartLink}>
             <FaShoppingCart />
+            <span className={styles.Header__navItemBadge}>
+              {(cartDetails && cartDetails.length) || 0}
+            </span>
           </Link>
-          <span className={styles.Header__navItemBadge}>
-            {(cartDetails && cartDetails.length) || 0}
-          </span>
         </div>
         <div className={styles.Header__navItem}>
           <Dropdown

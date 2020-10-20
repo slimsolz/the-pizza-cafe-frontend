@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-const useForm = (callback, validate) => {
-  const [values, setValues] = useState({});
+const useForm = (callback, validate, user = {}) => {
+
+  const [values, setValues] = useState(user);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
