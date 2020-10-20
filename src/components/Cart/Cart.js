@@ -59,7 +59,11 @@ const Cart = () => {
         icon: "success",
         confirmButtonColor: "#89c35c",
       }).then((result) => {
+        const userInfo = JSON.parse(localStorage.getItem("user"));
+        const token = localStorage.getItem("token");
         localStorage.clear();
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(userInfo));
         window.location.replace("/menu");
       });
     } else {
@@ -67,9 +71,18 @@ const Cart = () => {
     }
   };
 
+  const user = {
+    firstName: loggedInUser && loggedInUser.first_name,
+    lastName: loggedInUser && loggedInUser.last_name,
+    email: loggedInUser && loggedInUser.email,
+    phone: loggedInUser && loggedInUser.phone_number,
+    address: loggedInUser && loggedInUser.address,
+  };
+
   const { values, errors, handleChange, handleSubmit } = useForm(
     onCheckout,
-    validateCheckout
+    validateCheckout,
+    user
   );
 
   const cards =
@@ -142,9 +155,7 @@ const Cart = () => {
               name="firstName"
               inputName="first name"
               inputType="text"
-              inputValue={
-                values.firstName || (loggedInUser && loggedInUser.first_name)
-              }
+              inputValue={values.firstName}
               errorName={errors.firstName}
               placeholderText="First name"
               change={handleChange}
@@ -155,9 +166,7 @@ const Cart = () => {
               name="lastName"
               inputName="last name"
               inputType="text"
-              inputValue={
-                values.lastName || (loggedInUser && loggedInUser.last_name)
-              }
+              inputValue={values.lastName}
               errorName={errors.lastName}
               placeholderText="Last name"
               change={handleChange}
@@ -168,7 +177,7 @@ const Cart = () => {
               name="email"
               inputName="email"
               inputType="email"
-              inputValue={values.email || (loggedInUser && loggedInUser.email)}
+              inputValue={values.email}
               errorName={errors.email}
               placeholderText="Email address"
               change={handleChange}
@@ -179,9 +188,7 @@ const Cart = () => {
               name="phone"
               inputName="Phone number"
               inputType="text"
-              inputValue={
-                values.phone || (loggedInUser && loggedInUser.phone_number)
-              }
+              inputValue={values.phone}
               errorName={errors.phone}
               placeholderText="Phone number"
               change={handleChange}
@@ -203,9 +210,7 @@ const Cart = () => {
               name="address"
               inputName="Address"
               inputType="text"
-              inputValue={
-                values.address || (loggedInUser && loggedInUser.address)
-              }
+              inputValue={values.address}
               errorName={errors.address}
               placeholderText="Address"
               change={handleChange}
